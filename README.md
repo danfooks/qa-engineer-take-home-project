@@ -24,7 +24,23 @@ To delete a customer from the application, the user would select the "Remove Cus
   - GET to /customers/{customerId}
   - PUT to /customers/{customerId}
   - DELETE to /customers/{customerId}
+ 
+If you choose to write some API test cases, you can assume that the `POST` request uses a request body with the following format:
+```
+{
+  first_name: 'John',
+  last_name: 'Appleseed',
+  email: 'johnappleseed@vistarmedia.com',
+  address_line_1: '400 Market St',
+  address_line_2: 'Suite 825',
+  city: 'Philadelphia',
+  state: 'PA',
+  zip_code: '19106',
+  notes: 'This is a sample note.',
+}
+```
 
+The `GET`, `PUT`, and `DELETE` requests contain response bodies with the same format, but also include `response.body.id` and `response.status`.
 
 ### Further Instructions and Specifications
 * In order to setup this repository for local development, `cd` into the folder and run `npm install`. This should handle the installation of Cypress along with all required dependencies.
