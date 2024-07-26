@@ -19,11 +19,11 @@ To delete a customer from the application, the user would select the "Remove Cus
 ### Task at Hand
 * Create UI tests using TypeScript paired with Cypress for adding, editing, viewing, and removing customers from the application
 * BONUS: create API tests for all/some of following endpoints:
-  - POST to /customers
-  - GET to /customers
-  - GET to /customers/{customerId}
-  - PUT to /customers/{customerId}
-  - DELETE to /customers/{customerId}
+  - `POST` to `/customers`
+  - `GET` to `/customers`
+  - `GET` to `/customers/{customerId}`
+  - `PUT` to `/customers/{customerId}`
+  - `DELETE` to `/customers/{customerId}`
  
 If you choose to write some API test cases, you can assume that the `POST` request uses a request body with the following format:
 ```
