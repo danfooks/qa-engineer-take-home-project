@@ -47,7 +47,7 @@ The `GET`, `PUT`, and `DELETE` requests contain response bodies with the same fo
 * Create and assume your own values for `data-test` attributes. For example, you could assume the `data-test` value for the "First Name" field is `[data-test="firstName"]`, and the `data-test` value for the "Save" button is `[data-test="save"]`
 * You may spend as long as you wish on this project, but it is expected to take roughly 1-2 hours to complete this take-home project.
 * You can implement anything you want! Dependencies, best practices, additional test cases, etc.
-* Fee free to add additional test cases, even if they aren't completed, just to express testing scenarios that you are thinking about
+* Feel free to add additional test cases, even if they aren't completed, just to express testing scenarios that you are thinking about
 
 ### What We Are Evaluating
 * Test organization and syntax
