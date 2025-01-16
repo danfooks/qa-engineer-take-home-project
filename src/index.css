@@ -18,3 +18,65 @@
 .modal-content {
   
 }
+
+body, table {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Add border and padding to table cells */
+.customer-table {
+  width: 100%;
+  border-collapse: separate; /* Allows border-radius to work */
+  border-spacing: 0; /* Removes spacing between cells */
+  border-radius: 10px; /* Rounds the corners of the table */
+  overflow: hidden; /* Ensures content doesn't overflow rounded corners */
+}
+
+.table-cell, .header-cell{
+  border: 2px solid #ddd; /* Adds a border to each cell */
+  padding: 8px; /* Adds spacing within the cells */
+  text-align: left; /* Aligns text to the left */
+}
+
+/* Add a background color to header cells */
+.header-cell {
+  background-color: #f4f4f4; /* Light gray background */
+  font-weight: bold; /* Bold font for headers */
+}
+
+/* Add rounded corners to specific cells */
+.header-cell:first-child {
+  border-top-left-radius: 10px; /* Top-left corner */
+}
+
+.header-cell:last-child {
+  border-top-right-radius: 10px; /* Top-right corner */
+}
+
+.table-row:last-child .table-cell:first-child {
+  border-bottom-left-radius: 10px; /* Bottom-left corner */
+}
+
+.table-row:last-child .table-cell:last-child {
+  border-bottom-right-radius: 10px; /* Bottom-right corner */
+}
+
+/* Add alternating row colors for better readability */
+.table-row:nth-child(even) {
+  background-color: #f4f4f4; /* Light gray for even rows */
+}
+
+.table-row:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+/* Add hover effect on rows */
+.table-row:hover {
+  background-color: #f1f1f1; /* Slightly darker gray on hover */
+}
+
+/* Add spacing around the table */
+.customer-table {
+  margin: 20px auto; /* Center table and add vertical margin */
+  border: 1px solid #ddd; /* Border around the table */
+}

@@ -1,5 +1,7 @@
 import "./App.css";
+import Button from "./Button";
 import CustomerModal from "./CustomerModal";
+import CustomerTable from "./CustomerTable";
 import { useState } from "react";
 
 // TODO
@@ -22,48 +24,12 @@ function App() {
     <div>
       <h1>Customer Management</h1>
       {modalOpen && <CustomerModal />}
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address Line 1</th>
-            <th>Address Line 2</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip Code</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john.doe@example.com</td>
-            <td>123 Main St</td>
-            <td>Apt 4B</td>
-            <td>Springfield</td>
-            <td>IL</td>
-            <td>62701</td>
-            <td>Test user 1</td>
-          </tr>
-          <tr>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>jane.smith@example.com</td>
-            <td>456 Oak Ave</td>
-            <td>Suite 200</td>
-            <td>Chicago</td>
-            <td>IL</td>
-            <td>60611</td>
-            <td>Test user 2</td>
-          </tr>
-        </tbody>
-      </table>
-      <button type="button" onClick={openCustomerModal}>
-        Add Customer
-      </button>
+      <CustomerTable />
+      <Button
+        label="Add Customer"
+        onClick={openCustomerModal}
+        data-testid="add-customer-button"
+      />
     </div>
   );
 }

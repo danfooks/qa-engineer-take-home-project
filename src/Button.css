@@ -1,0 +1,23 @@
+button {
+  background-color: #f4f4f4; /* Matches the header background */
+  border: 2px solid #ddd; /* Matches the cell borders */
+  border-radius: 10px; /* Rounded corners like the table */
+  color: #333; /* Neutral text color */
+  padding: 10px 20px; /* Adds space around the text */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Matches the font stack */
+  font-size: 16px; /* Clean and readable font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the button */
+button:hover {
+  background-color: #f1f1f1; /* Slightly darker shade on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+/* Active state for the button */
+button:active {
+  background-color: #e9e9e9; /* Darker shade on click */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Inset shadow for pressed effect */
+}
