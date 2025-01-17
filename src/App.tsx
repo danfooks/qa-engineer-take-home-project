@@ -8,7 +8,9 @@ import { useState } from "react";
 // TODO
 /*
  - Handle value setting in the modal
- - Handle modal styling and overall app styling
+ - Handle modal save
+ - Investigate use of react context for handling customer data
+ - SetTimeout to fake API call and mount to table
 */
 
 function App() {
