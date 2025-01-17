@@ -1,7 +1,8 @@
 import "./App.css";
 import Button from "./Button";
-import CustomerModal from "./CustomerModal";
+import Modal from "./Modal";
 import CustomerTable from "./CustomerTable";
+import CustomerForm from "./CustomerForm";
 import { useState } from "react";
 
 // TODO
@@ -13,7 +14,7 @@ import { useState } from "react";
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  function openCustomerModal(): void {
+  function handleModalToggle(): void {
     setModalOpen((previous) => {
       console.log("open", previous, !previous);
       return !modalOpen;
@@ -23,11 +24,11 @@ function App() {
   return (
     <div>
       <h1>Customer Management</h1>
-      {modalOpen && <CustomerModal />}
+      {modalOpen && <Modal onClose={handleModalToggle}><CustomerForm /> </Modal>}
       <CustomerTable />
       <Button
         label="Add Customer"
-        onClick={openCustomerModal}
+        onClick={handleModalToggle}
         data-testid="add-customer-button"
       />
     </div>
