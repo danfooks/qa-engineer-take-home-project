@@ -7,10 +7,14 @@ import { useState } from "react";
 
 // TODO
 /*
- - Handle value setting in the modal
  - Handle modal save
+ - Form Validation (user cant save if non optional field values are empty strings)
  - Investigate use of react context for handling customer data
  - SetTimeout to fake API call and mount to table
+ - persist table values in local storage to mimic db?
+ - clean up code before next step????? 
+ - Land in PR, hit the bar immediately
+ - revisit situation, discuss db and api / server 
 */
 
 function App() {
