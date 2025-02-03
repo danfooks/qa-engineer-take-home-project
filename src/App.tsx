@@ -4,17 +4,19 @@ import Modal from "./Modal";
 import CustomerTable from "./CustomerTable";
 import CustomerForm from "./CustomerForm";
 import { useState } from "react";
-
+import { CustomerProvider } from "./CustomerProvider";
 // TODO
 /*
- - Handle modal save
- - Form Validation (user cant save if non optional field values are empty strings)
- - Investigate use of react context for handling customer data
- - SetTimeout to fake API call and mount to table
- - persist table values in local storage to mimic db?
- - clean up code before next step????? 
- - Land in PR, hit the bar immediately
- - revisit situation, discuss db and api / server 
+ [x] Handle modal save
+ [ ] Store and retrieve customer data in local storage
+ [ ] Mock api behavior to act async
+ [ ] Success Message on save 
+ [ ] Close Modal On save
+ [ ] Form Validation (user cant save if non optional field values are empty strings)
+ [ ] Investigate use of react context for handling customer data
+ [ ] SetTimeout to fake API call and mount to table
+ [ ] clean up code before next step?????(look at todos in files and clean up typing)
+ [ ] revisit situation, discuss db and api / server
 */
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
   }
 
   return (
+    <CustomerProvider>
     <div>
       <h1>Customer Management</h1>
       {modalOpen && <Modal onClose={handleModalToggle}><CustomerForm /> </Modal>}
@@ -36,8 +39,9 @@ function App() {
         label="Add Customer"
         onClick={handleModalToggle}
         data-testid="add-customer-button"
-      />
+        />
     </div>
+  </CustomerProvider>
   );
 }
 

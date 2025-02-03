@@ -28,3 +28,11 @@ input {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.form-group {
+  margin-bottom: 10px;
+}
+
+.modal-save-button {
+  margin-top: 10px;
+}
+

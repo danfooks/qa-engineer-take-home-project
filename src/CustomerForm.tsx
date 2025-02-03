@@ -2,6 +2,7 @@ import "./CustomerForm.css"
 import { ButtonType } from "./Button";
 import Button from "./Button";
 import { ChangeEvent, useState } from "react";
+import { useCustomerContext } from "./CustomerProvider";
 
 interface CustomerInputField {
  name: string,
@@ -55,11 +56,18 @@ const defaultCustomerData: CustomerData = {
 }
 
 const CustomerForm = () => {
+  const {
+    updateCustomerData,
+   } = useCustomerContext();
+
   const [customerData, setCustomerData] = useState<CustomerData>(defaultCustomerData)
+
   function handleSaveCustomer(e: Event): void {
     e.preventDefault(); // prevents the page from reloading
-    console.log('this jawn works');
+    updateCustomerData(customerData);
+    setCustomerData(defaultCustomerData);
   }
+
 
   console.log(customerData)
 
@@ -76,7 +84,7 @@ const CustomerForm = () => {
   }
 
   return (
-      <form onSubmit={(e) => handleSaveCustomer(e)}>
+      <form onSubmit={(e) => handleSaveCustomer(e)}> 
           <div className="form-grid">
             {customerInputFields.map((input) => (
               <div className="form-group" key={input.name}>
@@ -90,7 +98,7 @@ const CustomerForm = () => {
                 />
               </div>
             ))}
-            <Button type={ButtonType.Submit} label="Save" dataTestId="save-button"/>
+            <Button className="modal-save-button" type={ButtonType.Submit} label="Save" dataTestId="save-button"/>
           </div>
         </form>
   )

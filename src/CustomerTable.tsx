@@ -1,28 +1,8 @@
+import { useCustomerContext } from "./CustomerProvider";
 function CustomerTable() {
-  const customers = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-      email: "john.doe@example.com",
-      address1: "123 Main St",
-      address2: "Apt 4B",
-      city: "Springfield",
-      state: "IL",
-      zip: "62701",
-      notes: "Test user 1"
-    },
-    {
-      firstName: "Jane",
-      lastName: "Smith",
-      email: "jane.smith@example.com",
-      address1: "456 Oak Ave",
-      address2: "Suite 200",
-      city: "Chicago",
-      state: "IL",
-      zip: "60611",
-      notes: "Test user 2"
-    }
-  ];
+  const {
+    customerData
+  } = useCustomerContext();
 
   return (
     <div className="table-container">
@@ -41,13 +21,13 @@ function CustomerTable() {
           </tr>
         </thead>
         <tbody className="table-body">
-        {customers.map((customer, index) => (
+        {customerData.map((customer, index) => (
           <tr key={index} className="table-row">
             <td className="table-cell">{customer.firstName}</td>
             <td className="table-cell">{customer.lastName}</td>
             <td className="table-cell">{customer.email}</td>
-            <td className="table-cell">{customer.address1}</td>
-            <td className="table-cell">{customer.address2}</td>
+            <td className="table-cell">{customer.addressLine1}</td>
+            <td className="table-cell">{customer.addressLine2}</td>
             <td className="table-cell">{customer.city}</td>
             <td className="table-cell">{customer.state}</td>
             <td className="table-cell">{customer.zip}</td>
