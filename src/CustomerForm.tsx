@@ -55,7 +55,7 @@ const defaultCustomerData: CustomerData = {
   notes: '',
 }
 
-const CustomerForm = () => {
+const CustomerForm = ({closeModal}) => {
   const {
     updateCustomerData,
    } = useCustomerContext();
@@ -66,6 +66,7 @@ const CustomerForm = () => {
     e.preventDefault(); // prevents the page from reloading
     updateCustomerData(customerData);
     setCustomerData(defaultCustomerData);
+    closeModal();
   }
 
 
