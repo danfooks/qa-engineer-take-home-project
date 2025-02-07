@@ -1,12 +1,33 @@
+import React from "react";
 import { createContext } from "react";
 import { useContext } from "react";
+import { useCallback } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { ReactNode } from "react";
 
-interface CustomerProvierProps {
-  children: React.ReactElement
+interface Customer {
+  firstName: string;
+  lastName: string;
+  email: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  state: string;
+  zip: string;
+  notes: string;
 }
 
-const customers = [
+interface CustomerProviderProps {
+  children: ReactNode;
+}
+
+interface CustomerContextValue {
+  customerData: Customer[];
+  updateCustomerData: (customer: Customer) => Promise<void>;
+}
+
+const customers: Customer[] = [
   {
     firstName: "John",
     lastName: "Doe",
@@ -31,28 +52,70 @@ const customers = [
   }
 ];
 
-//TODOS:
-// store the customer data on local storage
-// add types to this document
-// Customer type, customer data, something with value, why is it mad?
-const CustomerContext = createContext(null);
+const customerDataJson = { customers };
 
-export const CustomerProvider = ({children}: CustomerProvierProps) => {
-  const [customerData, setCustomerData]= useState(customers)
-  console.log(setCustomerData)
+const storeCustomerDataAPICall = async (data: Customer[]): Promise<boolean> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      localStorage.setItem('customerData', JSON.stringify({ customers: data }));
+      resolve(true);
+    }, 1000);
+  });
+};
 
-  const updateCustomerData = (customer) => {
-    //todo fake this to be async
-    setCustomerData([...customerData, customer])
-  }
-  // Make set customer data function - fake an api call
-  // Make get customer data function // ? Maybe
-  const value = {
+const fetchCustomerDataAPICall = async (): Promise<Customer[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = localStorage.getItem('customerData');
+      resolve(data ? JSON.parse(data).customers : customers);
+    }, 1000);
+  });
+};
+
+const CustomerContext = createContext<CustomerContextValue | null>(null);
+
+export const CustomerProvider = ({ children }: CustomerProviderProps): JSX.Element => {
+  const [customerData, setCustomerData] = useState<Customer[]>([]);
+
+  const fetchCustomerData = useCallback(async () => {
+    const data = await fetchCustomerDataAPICall();
+    setCustomerData(data);
+  }, []);
+
+  const storeCustomerData = async (data: Customer[]): Promise<boolean> => {
+    const success = await storeCustomerDataAPICall(data);
+    setCustomerData(data);
+    return success;
+  };
+
+  const initializeCustomerData = () => {
+    if (!localStorage.getItem('customerData')) {
+      localStorage.setItem('customerData', JSON.stringify(customerDataJson));
+    }
+  };
+
+  useEffect(() => {
+    initializeCustomerData();
+    fetchCustomerData();
+  }, [fetchCustomerData]);
+
+  const updateCustomerData = async (customer: Customer): Promise<void> => {
+    const updatedCustomersList = [...customerData, customer];
+    await storeCustomerData(updatedCustomersList);
+  };
+
+  const value: CustomerContextValue = {
     customerData,
     updateCustomerData
+  };
+
+  return <CustomerContext.Provider value={value}>{children}</CustomerContext.Provider>;
+};
+
+export const useCustomerContext = (): CustomerContextValue => {
+  const context = useContext(CustomerContext);
+  if (!context) {
+    throw new Error("useCustomerContext must be used within a CustomerProvider");
   }
-
-  return <CustomerContext.Provider value={value}>{children}</CustomerContext.Provider>
-}
-
-export const useCustomerContext = () => useContext(CustomerContext)
+  return context;
+};
