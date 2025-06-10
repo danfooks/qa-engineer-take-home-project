@@ -21,10 +21,16 @@ import { CustomerProvider } from "./CustomerProvider";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const handleReload = () => {
+    window.location.reload();
+  };
+   function handleModalToggle(): void {
 
-  function handleModalToggle(): void {
     setModalOpen((previous) => {
       console.log("open", previous, !previous);
+      if(previous) {
+        handleReload();
+      }
       return !modalOpen;
     });
   }
@@ -32,13 +38,13 @@ function App() {
   return (
     <CustomerProvider>
     <div>
-      <h1>Customer Management</h1>
+      <h1 data-cy="page_header">Customer Management</h1>
       {modalOpen && <Modal onClose={handleModalToggle}><CustomerForm closeModal={handleModalToggle}/> </Modal>}
       <CustomerTable/>
       <Button
         label="Add Customer"
         onClick={handleModalToggle}
-        data-testid="add-customer-button"
+        dataTestId="add-customer-button"
         />
     </div>
   </CustomerProvider>

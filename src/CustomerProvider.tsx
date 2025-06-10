@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ReactNode } from "react";
 
 interface Customer {
+  id?: number;
   firstName: string;
   lastName: string;
   email: string;
