@@ -26,6 +26,7 @@ interface CustomerProviderProps {
 interface CustomerContextValue {
   customerData: Customer[];
   updateCustomerData: (customer: Customer) => Promise<void>;
+  fetchCustomerData: () => Promise<void>;
 }
 
 const customers: Customer[] = [
@@ -107,7 +108,8 @@ export const CustomerProvider = ({ children }: CustomerProviderProps): JSX.Eleme
 
   const value: CustomerContextValue = {
     customerData,
-    updateCustomerData
+    updateCustomerData,
+    fetchCustomerData
   };
 
   return <CustomerContext.Provider value={value}>{children}</CustomerContext.Provider>;

@@ -49,8 +49,14 @@ const deleteCustomer = (request, response) => {
     response.status(200).json()
  }
 
+let customerIdCounter = 3;
+
+function generateCustomerId() {
+  return customerIdCounter++;
+}
+
 const addCustomers = (request, response) => {
-    var currentLength = customers.length;
+    var currentLength = generateCustomerId();
     currentLength++;
     customers.push({
         "id":currentLength,
@@ -65,7 +71,7 @@ const addCustomers = (request, response) => {
         "notes":request.body.notes ?? "",
     })
 
-    let newCustomer = customers.find((cust) => cust.id === currentLength)
+    let newCustomer = customers.find((cust) => cust.id === customerIdCounter)
     response.status(201).json(newCustomer)
 }
 

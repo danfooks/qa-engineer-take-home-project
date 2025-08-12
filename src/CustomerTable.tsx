@@ -94,7 +94,7 @@ function CustomerTable() {
         <tbody className="table-body">
         {
         data?.map((customer, index) => (
-          <tr key={index} className="table-row">
+          <tr key={index} className="table-row" data-testid={`row-${index}`}>
             <td className="table-cell">{customer.firstName}</td>
             <td className="table-cell">{customer.lastName}</td>
             <td className="table-cell">{customer.email}</td>

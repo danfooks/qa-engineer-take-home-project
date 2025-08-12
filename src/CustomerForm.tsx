@@ -63,6 +63,7 @@ const defaultCustomerData: CustomerData = {
 const CustomerForm = ({closeModal}) => {
   const {
     updateCustomerData,
+    fetchCustomerData
    } = useCustomerContext();
 
   const [customerData, setCustomerData] = useState<CustomerData>(defaultCustomerData)
@@ -126,6 +127,35 @@ const CustomerForm = ({closeModal}) => {
       }
       window.location.reload();
   }
+  }
+
+  const handleDeleteCustomer = async () => {
+    const customerId = document.getElementById("customer_id")?.innerText ?? 0
+      try {
+        const res = await fetch(`/api/customers/${customerId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(customerData),
+        });
+  
+        const data = await res.json();
+        setReload(true);
+        if (!res.ok) {
+          throw new Error(data.message || 'Something went wrong');
+        }
+  
+        setResponse(data);
+  
+      } catch (err: any) {
+  
+      } finally {
+  
+      }
+      
+      await fetchCustomerData();
+      window.location.reload();
   }
 
   function handleFieldUpdate(e: ChangeEvent<HTMLInputElement>) {
@@ -210,6 +240,7 @@ const CustomerForm = ({closeModal}) => {
               </div>
             ))}
             <Button className="modal-save-button" type={ButtonType.Submit} label="Save" dataTestId="save-button"/>
+            <Button className="modal-delete-button" type={ButtonType.Button} label="Delete" dataTestId="delete-button" onClick={() => handleDeleteCustomer()} />
           </div>
         </form>
   )

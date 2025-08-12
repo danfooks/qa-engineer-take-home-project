@@ -4,6 +4,7 @@
   "description": "A take-home project for QA Engineers",
   "main": "index.js",
   "scripts": {
+    "cypress": "npx cypress open --e2e",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,7 +14,8 @@
     "mocha": "^10.7.0"
   },
   "devDependencies": {
-    "cypress": "^13.13.1",
+    "@faker-js/faker": "^9.8.0",
+    "cypress": "^14.4.1",
     "typescript": "^5.5.4"
   }
 }
