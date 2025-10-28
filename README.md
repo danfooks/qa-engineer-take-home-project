@@ -51,7 +51,7 @@ If you choose to write some API test cases, the `POST` request uses a request bo
 The `GET`, `PUT`, and `DELETE` requests contain response bodies with the same format, but also include `response.body.id` and `response.status`.
 
 ### Further Instructions and Specifications
-* In order to setup this repository for local development, `cd` into the `tests` folder and run `npm install`. This should handle the installation of Cypress along with all required dependencies.
+* In order to setup this repository for local test development, `cd` into the `tests` folder and run `npm install`. This should handle the installation of Cypress along with all required dependencies. Your Cypress implementation will be built within this folder.
 * Create and assume your own values for `data-test` attributes. For example, you could assume the `data-test` value for the "First Name" field is `[data-test="first-name"]`, and the `data-test` value for the "Save" button is `[data-test="save"]`
 * You may spend as long as you wish on this project, but it is expected to take roughly 1-2 hours to complete this take-home project.
 * You can implement anything you want! Dependencies, best practices, additional test cases, etc.
