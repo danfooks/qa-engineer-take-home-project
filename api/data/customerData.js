@@ -79,13 +79,19 @@ const addCustomers = (request, response) => {
 		return response.status(400).json({ error: validationError });
 	}
 
+	const emailExists = customers.some(c => c.email === request.body.email);
+	if (emailExists) {
+		return response.status(409).json({ error: 'A customer with this email already exists' });
+	}
+
 	const newCustomer = { id: nextId++, ...pickCustomerFields(request.body) };
 	customers.push(newCustomer);
 	response.status(201).json(newCustomer);
 };
 
 const updateCustomer = (request, response) => {
-	const foundCustomer = customers.find((customer) => customer.id === Number(request.params.customerId));
+	const customerId = Number(request.params.customerId);
+	const foundCustomer = customers.find((customer) => customer.id === customerId);
 	if (!foundCustomer) {
 		return response.status(404).json({ error: CUSTOMER_NOT_FOUND });
 	}
@@ -93,6 +99,11 @@ const updateCustomer = (request, response) => {
 	const validationError = validateCustomer(request.body);
 	if (validationError) {
 		return response.status(400).json({ error: validationError });
+	}
+
+	const emailTaken = customers.some(c => c.email === request.body.email && c.id !== customerId);
+	if (emailTaken) {
+		return response.status(409).json({ error: 'A customer with this email already exists' });
 	}
 
 	Object.assign(foundCustomer, pickCustomerFields(request.body));
